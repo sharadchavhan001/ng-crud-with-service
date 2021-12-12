@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <h2>Student Form : </h2>
+      <form [formGroup]="studentRegForm" (ng-submit)="onSubmit()">
+        <div class="form-group">
+          <label for="name">Name : </label>
+          <input type="text" formControlName="name">
+        </div>
+        <div class="form-group">
+          <label for="email">Email : </label>
+          <input type="text" formControlName="email">
+        </div>
+        <div class="form-group">
+          <label for="mobile">Mobile : </label>
+          <input type="text" formControlName="mobile">
+        </div>
+        <div class="form-group">
+          <label for="address">Adress : </label>
+          <input type="text" formControlName="address">
+        </div>
+
+        <button (click)="updateStudent()" *ngIf="updateForm" class="btn btn-primary">Update Student</button>
+        <button (click)="registerStudent()" *ngIf="!updateForm" class="btn btn-primary">Add Student</button>
+        <button (click)="resetForm()" class="btn btn-warning ml-2">Reset form</button>
+      </form>
+
+    </div>
+    <div class="col-md-8">
+      <h2>All Student Data : </h2>
+      <table class="table table-striped table-bordered ">
+        <thead>
+          <tr>
+            <th>sr No</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Mobile</th>
+            <th>Address</th>
+            <th>edit</th>
+            <th>delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let student of students; index as i">
+            <td>{{i+1}}</td>
+            <td>{{student.name}}</td>
+            <td>{{student.email}}</td>
+            <td>{{student.mobile}}</td>
+            <td>{{student.address}}</td>
+            <td (click)="getStudentById(i)">edit</td>
+            <td (click)="deleteStudent(i)">delete</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
